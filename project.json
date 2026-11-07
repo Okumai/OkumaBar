@@ -1,0 +1,10 @@
+{
+  "name": "OkumaBar",
+  "id": "okuma.dev_bar4omarchy",
+  "version": "0.1.0",
+  "author": "ŌKUMA",
+  "homepage": "https://github.com/Okumai/Bar",
+  "license": "MIT",
+  "target": "Omarchy 4.5.0 Quickshell shell",
+  "description": "A curated top-bar layout and four custom widgets for Omarchy"
+}

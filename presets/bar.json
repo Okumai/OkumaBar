@@ -1,0 +1,90 @@
+{
+  "background": "opaque",
+  "layout": {
+    "center": [
+      {
+        "id": "omarchy.menu"
+      }
+    ],
+    "centerBegin": [
+      {
+        "id": "omarchy.indicators"
+      }
+    ],
+    "centerEnd": [
+      {
+        "id": "okuma.dev_bar4omarchy.workspaces"
+      }
+    ],
+    "left": [
+      {
+        "format": "yyyy-MM-dd HH:mm",
+        "formatAlt": "d MMMM 'W'ww yyyy",
+        "id": "okuma.dev_bar4omarchy.clock",
+        "verticalFormat": "HH\n—\nmm"
+      },
+      {
+        "cities": [
+          {
+            "name": "Singapore",
+            "zone": "Singapore"
+          },
+          {
+            "name": "Los Angeles",
+            "zone": "America/Los_Angeles"
+          },
+          {
+            "name": "New York",
+            "zone": "America/New_York"
+          },
+          {
+            "name": "London",
+            "zone": "Europe/London"
+          },
+          {
+            "name": "Dubai",
+            "zone": "Asia/Dubai"
+          }
+        ],
+        "id": "omarchy.elsewhen"
+      },
+      {
+        "id": "okuma.dev_bar4omarchy.weather"
+      },
+      {
+        "id": "omarchy.system-update"
+      },
+      {
+        "id": "okuma.dev_bar4omarchy.ram-cleaner"
+      }
+    ],
+    "right": [
+      {
+        "id": "omarchy.tray"
+      },
+      {
+        "id": "omarchy.keyboard-layout"
+      },
+      {
+        "id": "omarchy.agents"
+      },
+      {
+        "id": "omarchy.bluetooth"
+      },
+      {
+        "id": "omarchy.network"
+      },
+      {
+        "id": "omarchy.audio"
+      },
+      {
+        "id": "omarchy.monitor"
+      },
+      {
+        "id": "omarchy.power"
+      }
+    ],
+    "tray": []
+  },
+  "position": "top"
+}

@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "id": "okuma.dev_bar4omarchy.clock",
+  "name": "OkumaBar Clock",
+  "version": "0.1.0",
+  "author": "ŌKUMA",
+  "description": "Date/time label with a calendar popup",
+  "kinds": [
+    "bar-widget"
+  ],
+  "entryPoints": {
+    "barWidget": "BarWidget.qml"
+  },
+  "barWidget": {
+    "displayName": "OkumaBar Clock",
+    "description": "Date/time label with a calendar popup",
+    "category": "Time",
+    "allowMultiple": false
+  },
+  "omarchy": {
+    "clonedFrom": "omarchy.clock"
+  },
+  "homepage": "https://github.com/Okumai/Bar",
+  "license": "MIT"
+}

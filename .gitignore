@@ -1,0 +1,11 @@
+__pycache__/
+*.py[cod]
+.venv/
+*.bak
+*.bak.*
+auth.json
+.env
+.env.*
+.cache/
+okumabar-backups/
+okumabar-state.json

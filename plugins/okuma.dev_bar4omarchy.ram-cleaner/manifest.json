@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "id": "okuma.dev_bar4omarchy.ram-cleaner",
+  "name": "OkumaBar RAM Checker",
+  "version": "0.1.0",
+  "author": "ŌKUMA",
+  "description": "RAM usage, per-window memory estimates and shortcuts to focus existing windows",
+  "kinds": [
+    "bar-widget"
+  ],
+  "entryPoints": {
+    "barWidget": "Widget.qml"
+  },
+  "barWidget": {
+    "displayName": "OkumaBar RAM Checker",
+    "category": "System",
+    "allowMultiple": false,
+    "defaultSection": "left",
+    "defaults": {},
+    "schema": []
+  },
+  "homepage": "https://github.com/Okumai/Bar",
+  "license": "MIT"
+}

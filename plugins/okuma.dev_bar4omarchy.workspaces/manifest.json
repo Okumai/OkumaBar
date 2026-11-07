@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "id": "okuma.dev_bar4omarchy.workspaces",
+  "name": "OkumaBar Workspaces",
+  "version": "0.1.0",
+  "author": "ŌKUMA",
+  "description": "Workspace number indicators",
+  "kinds": [
+    "bar-widget"
+  ],
+  "entryPoints": {
+    "barWidget": "Workspaces.qml"
+  },
+  "barWidget": {
+    "displayName": "OkumaBar Workspaces",
+    "description": "Workspace number indicators",
+    "category": "Compositor",
+    "allowMultiple": false
+  },
+  "omarchy": {
+    "clonedFrom": "omarchy.workspaces"
+  },
+  "homepage": "https://github.com/Okumai/Bar",
+  "license": "MIT"
+}

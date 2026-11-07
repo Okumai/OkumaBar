@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "id": "okuma.dev_bar4omarchy.weather",
+  "name": "OkumaBar Weather",
+  "version": "0.1.0",
+  "author": "ŌKUMA",
+  "description": "Weather pill with detail popup",
+  "kinds": [
+    "bar-widget"
+  ],
+  "entryPoints": {
+    "barWidget": "BarWidget.qml"
+  },
+  "barWidget": {
+    "displayName": "OkumaBar Weather",
+    "description": "Weather pill with detail popup",
+    "category": "Info",
+    "allowMultiple": false,
+    "settingsForm": "weatherSettings"
+  },
+  "omarchy": {
+    "clonedFrom": "omarchy.weather"
+  },
+  "homepage": "https://github.com/Okumai/Bar",
+  "license": "MIT"
+}
