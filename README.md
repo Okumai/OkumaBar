@@ -47,6 +47,10 @@ python3 scripts/manage.py check
 
 Already cloned? **`./install.sh` is the one-command activation.** Do not run as root. Close the bar settings editor during install/uninstall to avoid concurrent configuration writes.
 
+Installation displays the affected configuration and asks for explicit consent
+before any configuration write. Non-interactive installation is refused unless
+you pass `./install.sh --yes`; that flag explicitly authorizes replacing the bar.
+
 The installer copies plugins into `~/.config/omarchy/plugins/okuma.dev_bar4omarchy.*` and replaces **only the `bar` key** in `shell.json`. It preserves unrelated settings, including idle/lock, Dock pins, and other top-level plugins. It does replace your previous bar layout and bar-specific options; a backup is created first.
 
 Before activation it saves the previous configuration and any matching plugin directories in:
@@ -119,6 +123,31 @@ The initial world-clock list is Singapore, Los Angeles, New York, London and Dub
 - Uninstall leaves Omarchy's shared weather location state untouched.
 - RAM reads `/proc` and Hyprland clients. It validates process ownership/start time/window identity before focusing the selected window. It never closes windows or terminates processes.
 - No credentials, weather state, local caches, personal Dock entries or original full desktop configuration are bundled. Plugins run unsandboxed in Omarchy's shell; review code before installing.
+
+## Marketplace publication
+
+This checkout is a suite/preset, not a root Omarchy plugin. Do not submit it as
+`okuma.dev_bar4omarchy` or add a placeholder manifest. New marketplace submissions
+require exactly one real plugin manifest at the repository root.
+
+Export the existing widgets as four self-contained root-plugin sources:
+
+```bash
+python3 scripts/export_plugins.py ../OkumaBar-publication
+for plugin in ../OkumaBar-publication/*; do
+  omarchy plugin validate "$plugin"
+done
+```
+
+The output must be a new directory outside this checkout; existing destinations
+are never overwritten. Exporting does not install, enable, edit your bar or make
+network requests. Each directory includes its manifest, implementation, README,
+MIT license and upstream notices. Publish each as a separate GitHub repository,
+replace the README's OWNER/REPOSITORY placeholder and manifest homepage with its
+actual URL, and test installation/removal on a live desktop before submitting.
+Submit each widget separately, not the enclosing export directory. The original
+suite remains the optional complete-layout installer. Exported widgets do not
+apply that layout. Marketplace security checks and approval are still required.
 
 ## Development
 

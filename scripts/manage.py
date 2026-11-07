@@ -169,11 +169,24 @@ def uninstall(config_dir, force=False):
     print(f'Previous bar and plugin files restored. Backups retained: {backup}')
 
 
+def confirm_install(config_dir, assume_yes=False):
+    print(f'Configuration target: {config_dir / "shell.json"}')
+    print('This replaces the complete bar layout/options and the four bundled plugin directories.')
+    print('Other settings are preserved. A backup is created before activation; uninstall restores it.')
+    if assume_yes:
+        return
+    if not sys.stdin.isatty():
+        raise ValueError('Explicit consent required: review the changes and pass --yes for unattended installation')
+    if input('Replace the current bar and install OkumaBar? [y/N] ').strip().lower() not in {'y', 'yes'}:
+        raise ValueError('Installation cancelled')
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('action', choices=['install', 'uninstall', 'check'])
     parser.add_argument('--config-dir', type=Path, default=Path.home() / '.config/omarchy',
                         help='Omarchy config directory (default follows the Omarchy plugin registry)')
+    parser.add_argument('--yes', action='store_true', help='Explicit consent to replace the bar without prompting')
     parser.add_argument('--without-weather', action='store_true', help='Do not activate weather/network requests')
     parser.add_argument('--force', action='store_true', help='Uninstall even if bar settings changed')
     args = parser.parse_args()
@@ -185,6 +198,8 @@ def main():
         config_dir = args.config_dir.expanduser().resolve()
         if not config_dir.is_dir():
             raise ValueError(f'Config directory does not exist: {config_dir}')
+        if args.action == 'install':
+            confirm_install(config_dir, args.yes)
         # Serialize this tool's operations, not Omarchy's own configuration writes.
         with (config_dir / '.okumabar.lock').open('w') as lock:
             fcntl.flock(lock, fcntl.LOCK_EX)
