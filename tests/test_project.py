@@ -109,6 +109,39 @@ class InstallerTests(unittest.TestCase):
         self.assertEqual(self.current(), self.original)
 
 
+class ConsentTests(unittest.TestCase):
+    def test_noninteractive_install_requires_yes(self):
+        with patch.object(manage.sys.stdin, 'isatty', return_value=False):
+            with self.assertRaisesRegex(ValueError, 'Explicit consent'):
+                manage.confirm_install(Path('/example'))
+            manage.confirm_install(Path('/example'), assume_yes=True)
+
+    def test_interactive_cancel(self):
+        with patch.object(manage.sys.stdin, 'isatty', return_value=True), patch('builtins.input', return_value='n'):
+            with self.assertRaisesRegex(ValueError, 'cancelled'):
+                manage.confirm_install(Path('/example'))
+
+
+class ExportTests(unittest.TestCase):
+    def test_exports_are_self_contained_and_never_overwrite(self):
+        spec = importlib.util.spec_from_file_location('export_plugins', ROOT / 'scripts/export_plugins.py')
+        exporter = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(exporter)
+        with tempfile.TemporaryDirectory() as directory:
+            output = Path(directory) / 'release'
+            exporter.export_plugins(output)
+            self.assertEqual(len(list(output.iterdir())), 4)
+            for plugin in output.iterdir():
+                subprocess.run(['omarchy', 'plugin', 'validate', str(plugin)], check=True)
+                for name in ('README.md', 'LICENSE', 'docs/LICENSE-Omarchy', 'docs/THIRD_PARTY.md'):
+                    self.assertTrue((plugin / name).is_file(), name)
+                self.assertEqual(len(list(plugin.rglob('manifest.json'))), 1)
+            with self.assertRaisesRegex(ValueError, 'existing'):
+                exporter.export_plugins(output)
+            with self.assertRaisesRegex(ValueError, 'outside'):
+                exporter.export_plugins(ROOT / 'must-not-create-release')
+
+
 class ProjectTests(unittest.TestCase):
     def test_manifests_and_preset(self):
         sources = manage.validate_plugins()
